@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zerenity &mdash; RedEyeZack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage:#A9C7A0;
+    --sage-deep:#7FA377;
+    --indigo:#241F44;
+    --indigo-deep:#181433;
+    --rose:#E07FA6;
+    --cream:#F6F3EA;
+    --ink:#1C1830;
+    --max: 1120px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    opacity:0.65;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,243,234,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(28,24,48,0.08);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .nav-mark{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+  }
+  .nav-links{
+    display:flex; gap:28px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+  }
+  .nav-links a{
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:border-color 0.2s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{border-color:var(--ink);}
+  @media (max-width:600px){ .nav-links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(120% 90% at 50% 0%, var(--indigo) 0%, var(--indigo-deep) 100%);
+    color:var(--cream);
+    padding:96px 0 120px;
+    overflow:hidden;
+    isolation:isolate;
+  }
+
+  .breath-field{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:0;
+    pointer-events:none;
+  }
+  .breath-ring{
+    position:absolute;
+    border-radius:50%;
+    border:1px solid rgba(224,127,166,0.35);
+    animation: breathe 6.5s ease-in-out infinite;
+  }
+  .breath-ring.r1{width:280px; height:280px; animation-delay:0s;}
+  .breath-ring.r2{width:440px; height:440px; animation-delay:0.4s; border-color:rgba(169,199,160,0.28);}
+  .breath-ring.r3{width:620px; height:620px; animation-delay:0.8s; border-color:rgba(224,127,166,0.16);}
+
+  @keyframes breathe{
+    0%, 100% { transform:scale(0.92); opacity:0.55; }
+    50%      { transform:scale(1.06); opacity:1; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .breath-ring{animation:none; opacity:0.6;}
+  }
+
+  .hero-inner{
+    position:relative; z-index:1;
+    text-align:center;
+  }
+
+  .hero-eyebrow{
+    color:var(--sage);
+    margin-bottom:28px;
+  }
+
+  .wordmark{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    line-height:0.82;
+    font-size:clamp(3.2rem, 13vw, 8.5rem);
+    letter-spacing:0.01em;
+    display:inline-block;
+    border:3px solid var(--rose);
+    padding: 0.18em 0.32em 0.1em;
+  }
+
+  .tagline{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.05rem, 2.4vw, 1.4rem);
+    max-width:32ch;
+    margin:34px auto 0;
+    color:var(--cream);
+    opacity:0.92;
+  }
+
+  .hero-cta{
+    margin-top:44px;
+    display:inline-flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    letter-spacing:0.04em;
+    text-decoration:none;
+    padding:14px 26px;
+    border-radius:999px;
+    border:1px solid currentColor;
+    transition:transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+    display:inline-block;
+  }
+  .btn:hover, .btn:focus-visible{transform:translateY(-2px);}
+  .btn-solid{
+    background:var(--rose);
+    border-color:var(--rose);
+    color:var(--indigo-deep);
+  }
+  .btn-solid:hover, .btn-solid:focus-visible{background:var(--cream); border-color:var(--cream);}
+  .btn-outline{color:var(--cream);}
+  .btn-outline:hover, .btn-outline:focus-visible{background:var(--cream); color:var(--indigo-deep);}
+
+  :focus-visible{outline:2px solid var(--rose); outline-offset:3px;}
+
+  /* ---------- JOURNEY ---------- */
+  .journey{
+    background:var(--sage);
+    padding:100px 0;
+  }
+  .journey .wrap{max-width:760px;}
+  .journey h2{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:600;
+    font-size:clamp(1.6rem, 4vw, 2.3rem);
+    margin-bottom:28px;
+  }
+  .journey p{
+    font-size:clamp(1.02rem, 2vw, 1.18rem);
+    line-height:1.8;
+  }
+  .journey p + p{margin-top:20px;}
+  .journey em{
+    font-style:italic;
+    font-weight:500;
+    border-bottom:2px solid var(--rose);
+    padding-bottom:1px;
+  }
+  .quote{
+    margin-top:56px;
+    padding-top:36px;
+    border-top:1px solid rgba(28,24,48,0.2);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.3rem;
+  }
+  .quote cite{
+    display:block;
+    margin-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-style:normal;
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    opacity:0.7;
+  }
+
+  /* ---------- FOR TEACHERS ---------- */
+  .teachers{
+    background:var(--cream);
+    padding:100px 0;
+  }
+  .teachers-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:56px;
+    align-items:start;
+  }
+  @media (max-width:800px){ .teachers-grid{grid-template-columns:1fr;} }
+
+  .teachers h2{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:600;
+    font-size:clamp(1.6rem, 4vw, 2.3rem);
+    margin-bottom:22px;
+  }
+  .teachers p{font-size:1.05rem; max-width:48ch;}
+  .teachers p + p{margin-top:16px;}
+
+  .offer-card{
+    background:var(--indigo);
+    color:var(--cream);
+    border-radius:18px;
+    padding:36px;
+  }
+  .offer-card .eyebrow{color:var(--rose); opacity:1; margin-bottom:14px;}
+  .offer-card ul{
+    list-style:none;
+    margin:20px 0 28px;
+  }
+  .offer-card li{
+    font-size:0.98rem;
+    padding-left:22px;
+    position:relative;
+    margin-bottom:12px;
+  }
+  .offer-card li::before{
+    content:"\2014";
+    position:absolute; left:0; top:0;
+    color:var(--sage);
+  }
+
+  /* ---------- LISTEN ---------- */
+  .listen{
+    background:var(--indigo-deep);
+    color:var(--cream);
+    padding:100px 0;
+    text-align:center;
+  }
+  .listen .eyebrow{color:var(--sage); margin-bottom:16px;}
+  .listen h2{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:600;
+    font-size:clamp(1.6rem, 4vw, 2.3rem);
+    margin-bottom:44px;
+  }
+  .platforms{
+    display:flex;
+    gap:18px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .platform-link{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+    text-decoration:none;
+    color:var(--cream);
+    border:1px solid rgba(246,243,234,0.35);
+    border-radius:12px;
+    padding:20px 26px;
+    min-width:170px;
+    transition:border-color 0.2s ease, background 0.2s ease;
+  }
+  .platform-link:hover, .platform-link:focus-visible{
+    border-color:var(--rose);
+    background:rgba(224,127,166,0.08);
+  }
+  .platform-link strong{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.05rem;
+    margin-bottom:4px;
+    font-weight:500;
+  }
+
+  /* ---------- CD ---------- */
+  .cd{
+    background:var(--sage-deep);
+    color:var(--indigo-deep);
+    padding:100px 0;
+  }
+  .cd-grid{
+    display:grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width:800px){ .cd-grid{grid-template-columns:1fr;} }
+
+  .cd-visual{
+    aspect-ratio:1;
+    border-radius:20px;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(224,127,166,0.5), transparent 55%),
+      radial-gradient(circle at 70% 75%, rgba(36,31,68,0.55), transparent 55%),
+      linear-gradient(135deg, var(--indigo) 0%, var(--sage) 100%);
+    position:relative;
+    box-shadow:0 24px 50px -20px rgba(24,20,51,0.5);
+  }
+  .cd-visual::after{
+    content:"ZERENITY";
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    color:var(--cream);
+    border:3px solid var(--cream);
+    margin:18%;
+    font-size:clamp(1.1rem, 3vw, 1.6rem);
+    text-align:center;
+    letter-spacing:0.03em;
+  }
+
+  .cd h2{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:600;
+    font-size:clamp(1.5rem, 3.6vw, 2.1rem);
+    margin-bottom:18px;
+  }
+  .cd p{margin-bottom:16px; max-width:46ch;}
+  .cd .btn-solid{color:var(--indigo-deep); background:var(--indigo); border-color:var(--indigo); color:var(--cream);}
+  .cd .btn-solid:hover, .cd .btn-solid:focus-visible{background:var(--cream); color:var(--indigo-deep); border-color:var(--indigo);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--cream);
+    padding:56px 0 40px;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+  footer .foot-mark{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:1.3rem;
+  }
+  footer a{
+    text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    opacity:0.8;
+  }
+  footer a:hover, footer a:focus-visible{opacity:1;}
+  footer .foot-links{display:flex; gap:20px; flex-wrap:wrap;}
+  footer .fine{
+    width:100%;
+    margin-top:32px;
+    padding-top:20px;
+    border-top:1px solid rgba(246,243,234,0.12);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    opacity:0.55;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark">RedEyeZack</div>
+    <div class="nav-links">
+      <a href="#journey">The EP</a>
+      <a href="#teachers">For Teachers</a>
+      <a href="#listen">Listen</a>
+      <a href="#cd">The CD</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="breath-field" aria-hidden="true">
+    <div class="breath-ring r1"></div>
+    <div class="breath-ring r2"></div>
+    <div class="breath-ring r3"></div>
+  </div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow hero-eyebrow">An instrumental EP by RedEyeZack</p>
+    <h1 class="wordmark">ZERENITY</h1>
+    <p class="tagline">Be good to yourself &mdash; take fifteen minutes for gentle movement and deep stillness.</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid" href="#listen">Listen to the EP</a>
+      <a class="btn btn-outline" href="#teachers">For yoga teachers</a>
+    </div>
+  </div>
+</header>
+
+<section class="journey" id="journey">
+  <div class="wrap">
+    <p class="eyebrow">The EP</p>
+    <h2>Five tracks, one long exhale.</h2>
+    <p>
+      Zerenity moves from stillness to stillness. It opens with <em>a warm, cosmic
+      track</em> built for settling in, calming keys ideal for the first few
+      minutes of practice. From there it drifts into a piece with a subtle pulsing
+      undercurrent, giving the record its heartbeat, before easing into a track with
+      light drums and electric guitar &mdash; a groove to move through, not dance to.
+    </p>
+    <p>
+      The fourth movement lifts, uplifting and open. The EP closes with a reprise,
+      cosmic string movements returning to bring the body and mind back to rest.
+      A simple arrangement throughout: strings, guitar, light percussion. Nothing
+      asking for your attention &mdash; everything there to hold the room.
+    </p>
+    <div class="quote">
+      &ldquo;It does what it says on the tin.&rdquo;
+      <cite>Huw, Photographer</cite>
+    </div>
+  </div>
+</section>
+
+<section class="teachers" id="teachers">
+  <div class="wrap">
+    <div class="teachers-grid">
+      <div>
+        <p class="eyebrow">For yoga & wellness teachers</p>
+        <h2>Music that holds the room, not the spotlight.</h2>
+        <p>
+          Zerenity was written to sit quietly underneath a class &mdash; no vocals, no
+          sudden shifts, nothing to pull focus from breath or movement. It's used
+          today by teachers running beginners, restorative, and relaxation-focused
+          sessions.
+        </p>
+        <p>
+          Try it in a class, completely free, no obligation. If it's useful, there's
+          room to go further &mdash; credit, joint promotion, or a limited-run physical
+          CD your students can take home.
+        </p>
+      </div>
+      <div class="offer-card">
+        <p class="eyebrow">What's on offer</p>
+        <ul>
+          <li>Full digital EP, free to trial in your sessions</li>
+          <li>No obligation &mdash; just tell us if it lands</li>
+          <li>Joint promotion & credit for ongoing partners</li>
+          <li>Hand-finished CDs available for select collaborators</li>
+        </ul>
+        <a class="btn btn-solid" href="mailto:redeyezack@gmail.com?subject=Zerenity%20for%20my%20classes">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="listen" id="listen">
+  <div class="wrap">
+    <p class="eyebrow">Listen</p>
+    <h2>Stream the EP</h2>
+    <div class="platforms">
+      <a class="platform-link" href="https://redeyezack.bandcamp.com/album/zerenity" target="_blank" rel="noopener">
+        <strong>Bandcamp</strong>
+        Full EP, name-your-price
+      </a>
+      <a class="platform-link" href="https://music.apple.com/gb/album/zerenity-ep/1417406590" target="_blank" rel="noopener">
+        <strong>Apple Music</strong>
+        Stream the EP
+      </a>
+      <a class="platform-link" href="https://youtu.be/Bt1GkgrLdkM" target="_blank" rel="noopener">
+        <strong>YouTube</strong>
+        15-minute AudioStream
+      </a>
+      <a class="platform-link" href="https://youtu.be/tn39_ORXUqw" target="_blank" rel="noopener">
+        <strong>YouTube</strong>
+        3-hour extended stream
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cd" id="cd">
+  <div class="wrap cd-grid">
+    <div class="cd-visual"></div>
+    <div>
+      <p class="eyebrow">Limited physical run</p>
+      <h2>A CD made by hand, for a record built on stillness.</h2>
+      <p>
+        Each Zerenity CD carries a hand-finished cover in an ornate, Indian-inspired
+        style &mdash; a small, deliberate object in a mostly-digital catalogue. Produced
+        in a limited run, available directly or through partner studios.
+      </p>
+      <a class="btn btn-solid" href="mailto:redeyezack@gmail.com?subject=Zerenity%20CD%20enquiry">Enquire about a copy</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-mark">RedEyeZack</div>
+    <div class="foot-links">
+      <a href="https://redeyezack.bandcamp.com" target="_blank" rel="noopener">Bandcamp</a>
+      <a href="mailto:redeyezack@gmail.com">redeyezack@gmail.com</a>
+    </div>
+    <p class="fine">Zerenity &mdash; composed &amp; produced by RedEyeZack. Photography: Pepi Martinez. Graphic design: Walter Mantegazza.</p>
+  </div>
+</footer>
+
+</body>
+</html>
