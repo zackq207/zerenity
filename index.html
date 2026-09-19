@@ -80,11 +80,18 @@
     letter-spacing:0.02em;
   }
   .nav-links{
-    display:flex; gap:28px;
+    display:flex; gap:20px; align-items:center;
     font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem;
+    font-size:0.75rem;
     letter-spacing:0.04em;
   }
+  .nav-links .sep{
+    width:1px; height:14px;
+    background:rgba(28,24,48,0.25);
+    flex-shrink:0;
+  }
+  .nav-links .site-link{opacity:0.65;}
+  .nav-links .site-link:hover{opacity:1;}
   .nav-links a{
     text-decoration:none;
     border-bottom:1px solid transparent;
@@ -92,7 +99,10 @@
     transition:border-color 0.2s ease;
   }
   .nav-links a:hover, .nav-links a:focus-visible{border-color:var(--ink);}
-  @media (max-width:600px){ .nav-links{display:none;} }
+  @media (max-width:720px){ .nav-links{display:none;} }
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px; font-size:1.3rem; color:var(--ink);}
+  @media (max-width:720px){ .nav-toggle{display:block;} }
+  .nav-links.open{display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:var(--cream); padding:16px 28px 20px; border-bottom:1px solid rgba(28,24,48,0.08); gap:14px; z-index:100;}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -418,12 +428,19 @@
 
 <nav>
   <div class="wrap">
-    <div class="nav-mark">RedEyeZack</div>
+    <a class="nav-mark" href="https://www.redeyezack.co.uk" style="text-decoration:none;color:inherit;">RedEyeZack</a>
+    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">&#9776;</button>
     <div class="nav-links">
-      <a href="javascript:void(0)" onclick="document.getElementById(&#39;journey&#39;).scrollIntoView({behavior:&#39;smooth&#39;});return false;">The EP</a>
-      <a href="javascript:void(0)" onclick="document.getElementById(&#39;teachers&#39;).scrollIntoView({behavior:&#39;smooth&#39;});return false;">For Teachers</a>
-      <a href="javascript:void(0)" onclick="document.getElementById(&#39;listen&#39;).scrollIntoView({behavior:&#39;smooth&#39;});return false;">Listen</a>
-      <a href="javascript:void(0)" onclick="document.getElementById(&#39;cd&#39;).scrollIntoView({behavior:&#39;smooth&#39;});return false;">The CD</a>
+      <a href="javascript:void(0)" onclick="document.getElementById('journey').scrollIntoView({behavior:'smooth'});return false;">The EP</a>
+      <a href="javascript:void(0)" onclick="document.getElementById('teachers').scrollIntoView({behavior:'smooth'});return false;">For Teachers</a>
+      <a href="javascript:void(0)" onclick="document.getElementById('listen').scrollIntoView({behavior:'smooth'});return false;">Listen</a>
+      <a href="javascript:void(0)" onclick="document.getElementById('cd').scrollIntoView({behavior:'smooth'});return false;">The CD</a>
+      <span class="sep" aria-hidden="true"></span>
+      <a class="site-link" href="https://www.redeyezack.co.uk">Home</a>
+      <a class="site-link" href="https://www.redeyezack.co.uk/music">Music</a>
+      <a class="site-link" href="https://www.redeyezack.co.uk/private-hire">Hire</a>
+      <a class="site-link" href="https://www.redeyezack.co.uk/blog">Blog</a>
+      <a class="site-link" href="https://www.redeyezack.co.uk/contactus">Contact</a>
     </div>
   </div>
 </nav>
